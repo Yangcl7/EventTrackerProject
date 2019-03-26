@@ -16,11 +16,11 @@ CREATE SCHEMA IF NOT EXISTS `Meditationdb` DEFAULT CHARACTER SET utf8 ;
 USE `Meditationdb` ;
 
 -- -----------------------------------------------------
--- Table `Meditationdb`.`meditate`
+-- Table `Meditationdb`.`meditation`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `Meditationdb`.`meditate` ;
+DROP TABLE IF EXISTS `Meditationdb`.`meditation` ;
 
-CREATE TABLE IF NOT EXISTS `Meditationdb`.`meditate` (
+CREATE TABLE IF NOT EXISTS `Meditationdb`.`meditation` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `time_spent` INT(11) NOT NULL,
   `goal` TINYINT(4) NULL DEFAULT NULL,
@@ -40,3 +40,13 @@ GRANT ALL ON `Meditationdb`.* TO 'meditator';
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `Meditationdb`.`meditation`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `Meditationdb`;
+INSERT INTO `Meditationdb`.`meditation` (`id`, `time_spent`, `goal`, `recommended_time`, `feeling_rate`) VALUES (1, 10, true, 10, 3);
+
+COMMIT;
+

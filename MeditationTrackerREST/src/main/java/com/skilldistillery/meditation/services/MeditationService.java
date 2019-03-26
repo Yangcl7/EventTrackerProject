@@ -17,4 +17,10 @@ public interface MeditationService {
 	public List<Meditation> findByRacommendTimeRange(Integer min, Integer max);
 	
 	public List<Meditation> findByFeelingRate(Integer min, Integer max);
+
+	public Boolean deleteFillup(Integer id);
+
+	public Meditation addMeditate(Meditation meditation);
+
+	public Meditation updateFillup(Integer id, Meditation fillup);
 }

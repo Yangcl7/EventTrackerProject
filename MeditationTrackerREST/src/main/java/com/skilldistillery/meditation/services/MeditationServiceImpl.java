@@ -57,4 +57,22 @@ public class MeditationServiceImpl implements MeditationService {
 		return null;
 	}
 
+	@Override
+	public Boolean deleteFillup(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Meditation addMeditate(Meditation meditation) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Meditation updateFillup(Integer id, Meditation fillup) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
