@@ -45,6 +45,7 @@ buildscript {
 
 // define project specific dependencies
 dependencies {
+  compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.7'
   compile "mysql:mysql-connector-java:5.1.47"
   compile "log4j:log4j:1.2.17"
   compile "org.hibernate:hibernate-core:$hibernateVersion"
@@ -56,5 +57,4 @@ dependencies {
     'org.junit.vintage:junit-vintage-engine:4.12.1',
     'org.junit.platform:junit-platform-launcher:1.0.1',
     'org.junit.platform:junit-platform-runner:1.0.1')
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.7'
 }

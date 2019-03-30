@@ -8,9 +8,10 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider
     </provider>
     
-    <class>com.skilldistillery.meditationtrackerjpa.entities</class>
-
-    
+    <class>com.skilldistillery.meditationtrackerjpa.entities.Meditation</class>
+	<!-- <class>com.skilldistillery.meditation.services.MeditationService</class>
+     -->
+     
 
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/meditationdb?useSSL=false" />

@@ -13,7 +13,6 @@ repositories {
 	mavenCentral()
 }
 
-
 apply plugin: 'war'
 war {
   enabled = true

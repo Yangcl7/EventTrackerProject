@@ -20,17 +20,24 @@ import com.skilldistillery.meditationtrackerjpa.entities.Meditation;
 @RestController
 @RequestMapping("api")
 public class MeditationController {
+	
 	@Autowired
 	private MeditationService serv;
 
-	@GetMapping("test")
-	public Boolean testController(HttpServletResponse response) {
-		response.setStatus(418);
-		return true;
-	}
+//	@GetMapping("test")
+//	public Boolean testController(HttpServletResponse response) {
+//		response.setStatus(418);
+//		return true;
+//	}
 	@GetMapping(path = "ping")
 	public String ping() {
 		return "pong";
+	}
+	@GetMapping("meditation")
+	public List<Meditation> findAll(){
+		List<Meditation> meditations = null;
+		meditations = serv.findAll();
+		return meditations;
 	}
 	@GetMapping("meditation/{id}")
 	public Meditation findById(@PathVariable("id")Integer id, HttpServletResponse response) {
@@ -63,19 +70,8 @@ public class MeditationController {
 		return meditation;
 	}
 	
-	@DeleteMapping("fillups/{id}")
-	public Boolean deleteById(@PathVariable("id") Integer id,
-						HttpServletResponse response) {		
-		Boolean result = null;
-		result = serv.deleteFillup(id);
-		response.setStatus(204);
-		if(result == false) {
-			response.setStatus(400);
-		}
-		return result;
-	}
 	
-	@PostMapping("fillups")
+	@PostMapping("meditation")
 	public Meditation addMeditate(@RequestBody Meditation meditation, HttpServletResponse response) {
 		Meditation newMeditate = null;
 		response.setStatus(201);
@@ -86,17 +82,36 @@ public class MeditationController {
 		return newMeditate;			
 		}
 	
-	@PutMapping("fillups/{id}")
-	public Meditation replaceFillup(@PathVariable("id") Integer id,
+	@PutMapping("meditation/{id}")
+	public Meditation replaceMeditation(@PathVariable("id") Integer id,
 			 @RequestBody Meditation meditation,
 			 HttpServletResponse response) {
 		Meditation newMeditation = null;
-		newMeditation = serv.updateFillup(id, meditation);
+		newMeditation = serv.updateMeditation(id, meditation);
 		if(newMeditation == null ) {
 			response.setStatus(400);
 		}
 		return newMeditation;
 	}
-	
-	
+	@PostMapping("meditations")
+	public Meditation addMeditation(@RequestBody Meditation meditation, HttpServletResponse response) {
+		Meditation newMeditation = null;
+		response.setStatus(201);
+		newMeditation = serv.addMeditate(meditation);
+		if(newMeditation == null) {
+			response.setStatus(400);
+		}
+		return newMeditation;
+	}
+	@DeleteMapping("meditations/{id}")
+	public Boolean deleteById(@PathVariable("id") Integer id, HttpServletResponse response) {
+		Boolean result = null;
+		result = serv.deleteMeditation(id);
+		response.setStatus(204);
+		if(result == false) {
+			response.setStatus(400);
+		}
+		return result;
+	}
 }
+

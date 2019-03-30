@@ -13,5 +13,5 @@ public interface MeditationRepository extends JpaRepository<Meditation, Integer>
 	public List<Meditation> findByTimeSpentBetween(Integer min, Integer max);
 	public List<Meditation> findByFeelingRateBetween(Integer min, Integer max);
 	public List<Meditation> findByRecommendedTimeBetween(Integer min, Integer max);
-	public List<Meditation> findByGoal();
+//	public List<Meditation> findByGoal();
 }
