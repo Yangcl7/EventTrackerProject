@@ -22,6 +22,7 @@ DROP TABLE IF EXISTS `Meditationdb`.`meditation` ;
 
 CREATE TABLE IF NOT EXISTS `Meditationdb`.`meditation` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
   `time_spent` INT(11) NOT NULL,
   `goal` TINYINT(4) NULL DEFAULT NULL,
   `recommended_time` INT(11) NULL DEFAULT NULL,
@@ -46,7 +47,13 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `Meditationdb`;
-INSERT INTO `Meditationdb`.`meditation` (`id`, `time_spent`, `goal`, `recommended_time`, `feeling_rate`) VALUES (1, 10, true, 10, 3);
+INSERT INTO `Meditationdb`.`meditation` (`id`, `name`, `time_spent`, `goal`, `recommended_time`, `feeling_rate`) VALUES (1, 'Mindfulness ', 10, true, 10, 3);
+INSERT INTO `Meditationdb`.`meditation` (`id`, `name`, `time_spent`, `goal`, `recommended_time`, `feeling_rate`) VALUES (2, 'Breath awareness', 10, true, 10, 3);
+INSERT INTO `Meditationdb`.`meditation` (`id`, `name`, `time_spent`, `goal`, `recommended_time`, `feeling_rate`) VALUES (3, 'Mindfulness', 8, false, 10, 3);
+INSERT INTO `Meditationdb`.`meditation` (`id`, `name`, `time_spent`, `goal`, `recommended_time`, `feeling_rate`) VALUES (4, 'Kundalini yoga', 15, true, 15, 5);
+INSERT INTO `Meditationdb`.`meditation` (`id`, `name`, `time_spent`, `goal`, `recommended_time`, `feeling_rate`) VALUES (5, 'Body scan', 20, true, 20, 6);
+INSERT INTO `Meditationdb`.`meditation` (`id`, `name`, `time_spent`, `goal`, `recommended_time`, `feeling_rate`) VALUES (6, 'Zen meditation', 15, false, 30, 5);
+INSERT INTO `Meditationdb`.`meditation` (`id`, `name`, `time_spent`, `goal`, `recommended_time`, `feeling_rate`) VALUES (7, 'Zen meditation ', 30, true, 30, 8);
 
 COMMIT;
 
