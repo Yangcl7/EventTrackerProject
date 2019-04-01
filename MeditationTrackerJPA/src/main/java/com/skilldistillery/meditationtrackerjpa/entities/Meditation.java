@@ -12,6 +12,7 @@ public class Meditation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	private String name;
 	
 	private boolean goal;
 	
@@ -30,6 +31,14 @@ public class Meditation {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public boolean isGoal() {
@@ -71,6 +80,7 @@ public class Meditation {
 		result = prime * result + feelingRate;
 		result = prime * result + (goal ? 1231 : 1237);
 		result = prime * result + id;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + recommendedTime;
 		result = prime * result + timeSpent;
 		return result;
@@ -91,6 +101,11 @@ public class Meditation {
 			return false;
 		if (id != other.id)
 			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
 		if (recommendedTime != other.recommendedTime)
 			return false;
 		if (timeSpent != other.timeSpent)
@@ -100,13 +115,14 @@ public class Meditation {
 
 	@Override
 	public String toString() {
-		return "meditation [id=" + id + ", goal=" + goal + ", timeSpent=" + timeSpent + ", recommendedTime="
-				+ recommendedTime + ", feelingRate=" + feelingRate + "]";
+		return "Meditation [id=" + id + ", name=" + name + ", goal=" + goal + ", timeSpent=" + timeSpent
+				+ ", recommendedTime=" + recommendedTime + ", feelingRate=" + feelingRate + "]";
 	}
 
-	public Meditation(int id, boolean goal, int timeSpent, int recommendedTime, int feelingRate) {
+	public Meditation(int id, String name, boolean goal, int timeSpent, int recommendedTime, int feelingRate) {
 		super();
 		this.id = id;
+		this.name = name;
 		this.goal = goal;
 		this.timeSpent = timeSpent;
 		this.recommendedTime = recommendedTime;
@@ -116,5 +132,6 @@ public class Meditation {
 	public Meditation() {
 		super();
 	}
+
 	
 }

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Meditation</title>
+<script type="text/javascript" src="js/meditationFunction.js"></script>
+</head>
+<body>
+	<h1>Welcome to meditation tracker</h1>
+
+	<form name="meditationForm">
+		<input type="number" name="meditationId">
+		<button name="lookup">Get Meditation by Id</button>
+	</form>
+	<form name="deleteMeditation">
+		<input type="number" name="meditationId">
+		<button name="delete">Delete</button>
+	</form>
+	<div id="output">
+		<div id="meditationData"></div>
+	</div>
+
+	<hr>
+	<div id='addMeditationDiv'>
+		<form name='addMeditationForm'>
+			Name:<input name='name' type='text'><br>
+			Goal:<input name='goal' type='text'><br> 
+			Time Spent:<input name='timeSpent' type='number'><br>
+			Recommended Time:<input name='recommendedTime' type='number'><br> 
+			Feeling Rate:<input name='feelingRate' type='number'><br>
+			<button id='addMeditation'>Add Meditation</button>
+		</form>
+	</div>
+		
+
+
+</body>
+</html>
