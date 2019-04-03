@@ -13,4 +13,7 @@ Technoligy used
 - AWS
 - MAMP
 
+aws link
+http://18.216.22.23:8080/MeditationTrackerREST/
+
 
