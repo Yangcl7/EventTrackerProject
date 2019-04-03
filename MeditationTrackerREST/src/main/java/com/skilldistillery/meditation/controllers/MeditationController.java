@@ -70,18 +70,6 @@ public class MeditationController {
 		return meditation;
 	}
 	
-	
-	@PostMapping("meditation")
-	public Meditation addMeditate(@RequestBody Meditation meditation, HttpServletResponse response) {
-		Meditation newMeditate = null;
-		response.setStatus(201);
-		newMeditate = serv.addMeditate(meditation);
-		if(newMeditate == null) {
-			response.setStatus(400);
-		}
-		return newMeditate;			
-		}
-	
 	@PutMapping("meditation/{id}")
 	public Meditation replaceMeditation(@PathVariable("id") Integer id,
 			 @RequestBody Meditation meditation,
