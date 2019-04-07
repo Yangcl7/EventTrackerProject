@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 import { NotMetPipe } from './pipes/not-met.pipe';
+import { DisplayComponent } from './components/display/display.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MeditationListComponent,
-    NotMetPipe
+    NotMetPipe,
+    DisplayComponent
 
   ],
   imports: [

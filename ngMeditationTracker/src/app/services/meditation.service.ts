@@ -1,12 +1,18 @@
 import { catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { Meditation } from '../models/meditation';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
+import { DatePipe } from '@angular/common';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class MeditationService {
   private baseUrl = 'http://lcoalhost:8085/';
   private url = this.baseUrl + 'api/meditation';
@@ -22,7 +28,7 @@ export class MeditationService {
     );
   }
   public create(meditation: Meditation) {
-    const httpOptions = { headers: {'Content-type': 'application/json'}};
+    const httpOption = { headers: {'Content-type': 'application/json'}};
     return this.http.post<Meditation>(this.url, meditation, httpOptions).pipe(
       catchError((err: any) => {
         console.error('MeditationService.create(); Error');
@@ -41,16 +47,19 @@ export class MeditationService {
     );
   }
   public update(meditation: Meditation) {
-    const httpOptions = { headers: {'Content-type': 'application/jsson'}};
+    const httpOption = { headers: {'Content-type': 'application/jsson'}};
     return this.http.put<Meditation>('${this.url}/${meditation.id}', meditation, httpOptions).pipe(
       catchError((err: any) => {
         console.error('MeditationService.update(): Error');
         console.error(err);
         return throwError('Error in MeditationService.update()');
       })
-    )
+    );
+  }
+  public save(meditation: Meditation): Observable<Meditation> {
+    return this.http.post<Meditation>(this.baseUrl, meditation, httpOptions);
   }
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private dataPipe: DatePipe) { }
 }
