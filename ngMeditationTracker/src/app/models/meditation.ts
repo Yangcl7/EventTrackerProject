@@ -12,7 +12,7 @@ export class Meditation {
     goal?: boolean,
     timeSpent?: number,
     recommendedTime?: number,
-    feelingRate?: number,) {
+    feelingRate?: number, ) {
       this.id = id;
       this.name = name;
       this.goal = goal;
