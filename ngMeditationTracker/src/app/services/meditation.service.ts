@@ -12,7 +12,7 @@ import { DatePipe } from '@angular/common';
 export class MeditationService {
 
   constructor(private http: HttpClient, private dataPipe: DatePipe) { }
-  private baseUrl = 'http://lcoalhost:8085/api/meditation';
+  private baseUrl = 'http://localhost:8084/api/meditation';
 
   private httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -36,7 +36,8 @@ export class MeditationService {
     );
   }
   public create(meditation: Meditation) {
-    const httpOption = { headers: {'Content-type': 'application/json'}};
+    console.log(meditation);
+
     return this.http.post<Meditation>(this.baseUrl, meditation, this.httpOptions).pipe(
       catchError((err: any) => {
         console.error(err);
@@ -54,8 +55,8 @@ export class MeditationService {
     );
   }
   public update(updateMeditation: Meditation) {
-    const id = updateMeditation.id;
-    return this.http.put<Meditation>(this.baseUrl + '/' + id, updateMeditation).pipe(
+    const httpOptions = { headers: {'Content-type': 'application/json'}};
+    return this.http.put<Meditation>('${this.baseUrl}/${meditation.id}', Meditation, httpOptions).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError('Error in MeditationService.update()');

@@ -6,15 +6,71 @@
     <th>ID</th>
     <th>Name</th>
     <th>Goal</th>
+    <th>Delete</th>
   </tr>
 </thead>
 
-<tr* ngFor='let meditation of meditations'>
+<tr *ngFor='let meditation of meditations'>
   <td> {{meditation.id}}</td>
-  <td (click)='displayMeditation(meditation)'> {{meditation.name}}</td>
+  <td (click)='displayMeditation(meditation)'>{{meditation.name}}</td>
   <td> {{meditation.goal}}</td>
   <td>
     <button (click)='deleteMeditation(meditation.id)'>Del</button>
   </td>
 </tr>
 </table>
+
+<div *ngIf='selected && !editMeditation'>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 10px;
+    }
+  </style>
+    <body>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Goal</th>
+          <th>Time Spent</th>
+          <th>Recommended Time</th>
+          <th>Feeling Rate</th>
+        </tr>
+        <tr>
+          <td>{{selected.id}}</td>
+          <td>{{selected.name}}</td>
+          <td>{{selected.goal}}</td>
+          <td>{{selected.timeSpent}}</td>
+          <td>{{selected.recommendedTime}}</td>
+          <td>{{selected.feelingRate}}</td>
+      </table>
+    </body>
+
+  <button (click)='displayMed()'>Return</button>
+  <button (click)='setEditMeditation()'>Edit</button>
+</div>
+
+<form *ngIf='editMeditation' #editForm="ngForm">
+  Name: <input type="text" name="name" [(ngModel)]= 'editMeditation.name' ngModel>
+  Goal: <input type="text" name='goal' [(ngModel)]= 'editMeditation.goal' ngModel>
+  Time Spent: <input type="number" name='timeSpent' [(ngModel)]= 'editMeditation.timeSpent' ngModel>
+  Recommended Time: <input type="number" name='recommendedTime' [(ngModel)]= 'editMeditation.recommendedTime' ngModel>
+  Feeling Rate: <input type="number" name='feelingRate' [(ngModel)]= 'editMeditation.feelingRate' ngModel>
+
+  <input type="submit" name="submit" value="Save" (click) = 'updateMeditation(editForm)'>
+  <input type="submit" name="submit" value="Cancel" (click) = 'editMeditation=null'>
+</form>
+
+<form *ngIf='!selected' #createForm="ngForm">
+  Name: <input type="text" name="name" ngModel><br>
+  Goal: <input type="text" name="goal" ngModel><br>
+  Time Spent: <input type="text" name="timeSpent" ngModel><br>
+  Recommended Time: <input type="text" name="recommendedTime" ngModel><br>
+  Feeling Rate: <input type="text" name="feelingRate" ngModel><br>
+<input type="submit" name="submit" value="Add" (click)="addMeditation(createForm)">
+</form>
+

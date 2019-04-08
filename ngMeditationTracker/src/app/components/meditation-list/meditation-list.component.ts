@@ -15,7 +15,7 @@ export class MeditationListComponent implements OnInit {
   selected: Meditation = null;
   goal = false;
   newMeditation: Meditation = new Meditation();
-  editMeditation: Meditation = null;
+  editMeditation: Meditation = new Meditation();
   showAllMeditations = false;
 
   constructor(private meditationService: MeditationService) { }
@@ -27,16 +27,22 @@ export class MeditationListComponent implements OnInit {
     this.meditationService.index().subscribe(data => {
       this.meditations = data;
     },
-    err => {
-      console.error('MeditationListComponent.reload(): Error');
-      console.error(err);
-    }
+    error => console.log(error)
     );
+    // this.meditationService.index().subscribe(data => {
+    //   this.meditations = data;
+    // },
+    // error => console.log(error)
+    // );
   }
   medCount() {
     return this.meditations.length;
   }
   setEditMeditation(): void {
+    console.log('setEditMeditation(): ');
+    console.log(this.selected);
+
+
     this.editMeditation = Object.assign({}, this.selected);
   }
   updateMeditation(meditationForm: NgForm) {
@@ -54,11 +60,11 @@ export class MeditationListComponent implements OnInit {
         error => console.log(error)
       );
   }
-  deleteMeditation(id) {
-    this.meditationService.delete(id).subscribe(data => {
+  deleteMeditation(meditation: Meditation) {
+    this.meditationService.delete(meditation.id).subscribe(data => {
       this.reload();
     },
-    error => console.log(error)
+    error => { console.log(error) }
     );
   }
   addMeditation(meditationForm: NgForm) {
@@ -69,6 +75,10 @@ export class MeditationListComponent implements OnInit {
     );
   }
   displayMeditation = function(meditation) {
+    console.log('displayMeditation(): ');
+    console.log(meditation);
+
+
     this.selected = meditation;
   };
   displayMed(): void {
